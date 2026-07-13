@@ -172,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 4923171312219514306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.6, y: -3.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -0.47, y: -0.47, z: -0.47}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -301,6 +301,7 @@ MonoBehaviour:
   draggableLayerMask:
     serializedVersion: 2
     m_Bits: 119
+  rotationStepDegrees: 90
 --- !u!50 &8260083683969314646
 Rigidbody2D:
   serializedVersion: 5

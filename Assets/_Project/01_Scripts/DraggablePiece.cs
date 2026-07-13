@@ -5,13 +5,19 @@ namespace _Project.Scripts
 {
     public class DraggablePiece : MonoBehaviour
     {
-        [SerializeField] private LayerMask draggableLayerMask = ~0; 
+        [SerializeField]
+        private LayerMask draggableLayerMask = ~0;
 
-        private Vector3 offset; 
-        private bool isDragging;
-        private Transform draggedObject;
+        [SerializeField]
+        private float rotationStepDegrees = 90f;
+
+        private Vector3 offset;
+        private bool dragging;
+        private Transform draggedRoot;
 
         private ConnectionPoint[] connectionPoints;
+
+        private static int globalSortingOrder = 0;
 
         void Start()
         {
@@ -28,27 +34,63 @@ namespace _Project.Scripts
 
                 if (hit.collider != null && hit.collider.gameObject == gameObject)
                 {
-       
-                    draggedObject = GetGroupRoot(transform);
-                    offset = draggedObject.position - mouseWorldPosition;
-                    isDragging = true;
+                    bool isRoot = transform.parent == null;
+
+                    if (isRoot)
+                    {
+                        draggedRoot = GetGroupRoot(transform);
+                    }
+                    else
+                    {
+                        DetachFromGroup();
+                        draggedRoot = transform;
+                    }
+
+                    offset = draggedRoot.position - mouseWorldPosition;
+                    dragging = true;
+
+                    BringGroupToFront(draggedRoot);
                 }
             }
 
-            if (Mouse.current.leftButton.isPressed && isDragging)
+            if (Mouse.current.leftButton.isPressed && dragging)
             {
-                draggedObject.position = GetMouseWorldPosition() + offset;
+                draggedRoot.position = GetMouseWorldPosition() + offset;
             }
 
-            if (Mouse.current.leftButton.wasReleasedThisFrame && isDragging)
+            if (Mouse.current.leftButton.wasReleasedThisFrame && dragging)
             {
-                isDragging = false;
+                dragging = false;
 
                 foreach (ConnectionPoint connectionPoint in connectionPoints)
                 {
                     connectionPoint.TryConnect();
                 }
             }
+
+            if (Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                Vector3 mouseWorldPosition = GetMouseWorldPosition();
+
+                RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, Mathf.Infinity, draggableLayerMask);
+
+                bool canRotate = transform.parent == null;
+
+                if (hit.collider != null && hit.collider.gameObject == gameObject && canRotate)
+                {
+                    transform.Rotate(0f, 0f, rotationStepDegrees);
+                }
+            }
+        }
+
+        void DetachFromGroup()
+        {
+            foreach (ConnectionPoint point in connectionPoints)
+            {
+                point.Detach();
+            }
+
+            transform.SetParent(null, true);
         }
 
         Vector3 GetMouseWorldPosition()
@@ -61,7 +103,7 @@ namespace _Project.Scripts
 
             return worldPosition;
         }
-    
+
         public static Transform GetGroupRoot(Transform piece)
         {
             Transform current = piece;
@@ -72,6 +114,18 @@ namespace _Project.Scripts
             }
 
             return current;
+        }
+
+        public static void BringGroupToFront(Transform root)
+        {
+            globalSortingOrder++;
+
+            SpriteRenderer[] renderers = root.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach (SpriteRenderer renderer in renderers)
+            {
+                renderer.sortingOrder = globalSortingOrder;
+            }
         }
     }
 }

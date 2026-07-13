@@ -444,6 +444,7 @@ MonoBehaviour:
   draggableLayerMask:
     serializedVersion: 2
     m_Bits: 119
+  rotationStepDegrees: 90
 --- !u!50 &4019039543238027209
 Rigidbody2D:
   serializedVersion: 5

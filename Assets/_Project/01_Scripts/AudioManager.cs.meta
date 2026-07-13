@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b87f5508d1eb1704988ff3667d103a36
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sfxSource: {instanceID: 0}
+  - musicSource: {instanceID: 0}
+  - connectClip: {fileID: 8300000, guid: eb36e5af580a6b748a914d5e5790757b, type: 3}
+  - submitClip: {instanceID: 0}
+  - newOrderClip: {fileID: 8300000, guid: 137b2e7da79fc354398b13e833e9f450, type: 3}
+  - endScreenClip: {fileID: 8300000, guid: b8d76602e1d848249850cb6487132c75, type: 3}
+  - backgroundMusic: {fileID: 8300000, guid: 46995dd66923368419a555a829474a43, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

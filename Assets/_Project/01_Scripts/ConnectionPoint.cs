@@ -40,6 +40,8 @@ public class ConnectionPoint : MonoBehaviour
 
             connectedPoint = otherPoint;
             otherPoint.connectedPoint = this;
+
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayConnectSound();
             
             ConnectPieces(otherPoint);
             return;
@@ -59,5 +61,22 @@ public class ConnectionPoint : MonoBehaviour
         thisRoot.position += difference;
 
         thisRoot.SetParent(otherRoot, true);
+        
+        thisRoot.SetParent(otherRoot, true);
+
+        DraggablePiece.BringGroupToFront(otherRoot);
+    }
+    
+    public void Detach()
+    {
+        if (!IsConnected())
+        {
+            return;
+        }
+
+        ConnectionPoint other = connectedPoint;
+
+        connectedPoint = null;
+        other.connectedPoint = null;
     }
 }

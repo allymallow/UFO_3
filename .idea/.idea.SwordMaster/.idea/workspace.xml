@@ -6,82 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="6b1a783e-9811-4378-b68e-44c6087b60d3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SwordMaster/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwordMaster/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/ChainsawBlade.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/ChainsawBlade.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/oarBlade.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/oarBlade.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/paddleBlade.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/paddleBlade.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/swordBlade.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Blades/swordBlade.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards/duckGuard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards/duckGuard.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards/oarGuard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards/oarGuard.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards/swordGuard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Guards/swordGuard.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/BroomHandle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/BroomHandle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/ChainsawHandle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/ChainsawHandle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/PaddleHandle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/PaddleHandle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/SwordHandle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/SwordHandle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/katannaHandle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/katannaHandle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/oarHandle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Swords/Handle/oarHandle.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards/BasicSwordGuard.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards/BasicSwordGuard.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards/OarGuard.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards/OarGuard.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards/RubberDuckGuard.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Guards/RubberDuckGuard.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/BasicSwordHilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/BasicSwordHilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/BroomHilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/BroomHilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/ChainsawHilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/ChainsawHilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/KatanaHilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/KatanaHilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/OarHilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/OarHilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/PaddleHilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Hilt/PaddleHilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/BasicSwordMetal.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/BasicSwordMetal.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/ChainsawMetal.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/ChainsawMetal.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/OarMetal.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/OarMetal.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/PaddleMetal.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Metal/PaddleMetal.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/TEMP_Guard.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/TEMP_Guard.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/TEMP_Hilt.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/TEMP_Hilt.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/TEMP_Metal.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/TEMP_Metal.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/ConnectionPoint.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/ConnectionPoint.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/DraggablePiece.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/DraggablePiece.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/GameManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/GameManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/01_Scripts/ConnectionPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/01_Scripts/ConnectionPoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/01_Scripts/DraggablePiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/01_Scripts/DraggablePiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/01_Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/01_Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Guards/BasicSwordGuard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Guards/BasicSwordGuard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Guards/OarGuard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Guards/OarGuard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Guards/RubberDuckGuard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Guards/RubberDuckGuard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/BroomHilt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/BroomHilt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/ChainsawHilt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/ChainsawHilt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/KatanaHilt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/KatanaHilt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/PaddleHilt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Hilt/PaddleHilt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Metal/OarMetal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Metal/OarMetal.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Metal/PaddleMetal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/02_Prefabs/Metal/PaddleMetal.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,6 +119,7 @@
       <workItem from="1783832851336" duration="48000" />
       <workItem from="1783833446844" duration="7754000" />
       <workItem from="1783875377995" duration="4908000" />
+      <workItem from="1783968429806" duration="6717000" />
     </task>
     <servers />
   </component>

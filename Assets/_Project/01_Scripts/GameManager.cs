@@ -1,177 +1,270 @@
 using System.Collections.Generic;
-using UnityEngine;
 using _Project.Scripts;
 using TMPro;
-using UnityEngine.InputSystem;
+using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace _Project._01_Scripts
 {
-    [Header("Piece Prefabs")] [SerializeField]
-    private List<GameObject> metalPrefabs;
-    [SerializeField] private List<GameObject> guardPrefabs;
-    [SerializeField] private List<GameObject> hiltPrefabs;
-
-    [Header("Spawn Points")]
-    [SerializeField] private Transform[] metalSpawnPoints;
-    [SerializeField] private Transform[] guardSpawnPoints;
-    [SerializeField] private Transform[] hiltSpawnPoints;
-
-    [Header("Round Settings")]
-    [SerializeField] private int piecesPerCategory = 2;
-    [SerializeField] private float roundTimeSeconds = 60f;
-
-    [Header("UI")]
-    [SerializeField] private TMP_Text timerText;
-    [SerializeField] private TMP_Text scoreText;
-    private float _timer; 
-
-    private float timeRemaining;
-    private bool roundActive;
-
-    private readonly List<GameObject> activePieces = new List<GameObject>();
-
-    public int Score { get; private set; }
-
-    void Start()
+    public class GameManager : MonoBehaviour
     {
-        StartRound();
-    }
+        [Header("Managers")]
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private AudioManager audioManager;
 
-    void Update()
-    { 
-        if (!roundActive) return;
+        [Header("Piece Prefabs")]
+        [SerializeField] private List<GameObject> metalPrefabs;
+        [SerializeField] private List<GameObject> guardPrefabs;
+        [SerializeField] private List<GameObject> hiltPrefabs;
+
+        [Header("Spawn Points")]
+        [SerializeField] private Transform[] metalSpawnPoints;
+        [SerializeField] private Transform[] guardSpawnPoints;
+        [SerializeField] private Transform[] hiltSpawnPoints;
+
+        [Header("Round Settings")]
+        [SerializeField] private int piecesPerCategory = 2;
+        [SerializeField] private float roundTimeSeconds = 60f;
+
+        [Header("UI")]
+        [SerializeField] private TMP_Text timerText;
+        [SerializeField] private TMP_Text scoreText;
+
+        private float timeRemaining;
+        private bool roundActive;
+
+        private readonly List<GameObject> activePieces = new List<GameObject>();
+
+        public int Score { get; private set; }
+
+        void Start()
+        {
+            roundActive = false;
+        }
+
+        void Update()
+        {
+            if (!roundActive) return;
 
             timeRemaining -= Time.deltaTime;
 
-        if (timeRemaining <= 0f)
-        {
-            timeRemaining = 0f;
+            if (timeRemaining <= 0f)
+            {
+                timeRemaining = 0f;
+                UpdateTimerUI();
+                EndRound();
+                return;
+            }
+
             UpdateTimerUI();
-            EndRound();
-            return;
-        }
 
-        UpdateTimerUI();
-    }
-
-    public void StartRound()
-    {
-        Score = 0;
-        timeRemaining = roundTimeSeconds;
-        roundActive = true;
-
-        ClearBoard();
-        SpawnBatch();
-
-        UpdateTimerUI();
-        UpdateScoreUI();
-    }
-
-    void EndRound()
-    {
-        roundActive = false;
-    }
-    
-    public void SubmitPieces()
-    {
-        if (!roundActive)
-        {
-            return;
-        }
-
-        List<List<DraggablePiece>> groups = GetConnectedGroups();
-
-        foreach (List<DraggablePiece> group in groups)
-        {
-            int points = ScoreGroup(group);
-            Score += points;
-
-            foreach (DraggablePiece piece in group)
+            if (uiManager != null)
             {
-                activePieces.Remove(piece.gameObject);
-                Destroy(piece.gameObject);
+                uiManager.SetStatus(HasCompletedGroup());
             }
         }
 
-        SpawnBatch();
-        UpdateScoreUI();
-    }
-    
-    int ScoreGroup(List<DraggablePiece> group)
-    {
-        return group.Count == 3 ? 1 : 0;
-    }
-
-    List<List<DraggablePiece>> GetConnectedGroups()
-    {
-        Dictionary<Transform, List<DraggablePiece>> groupsByRoot = new Dictionary<Transform, List<DraggablePiece>>();
-
-        foreach (GameObject obj in activePieces)
+        public void BeginGame()
         {
-            DraggablePiece piece = obj.GetComponent<DraggablePiece>();
-            Transform root = DraggablePiece.GetGroupRoot(piece.transform);
-
-            if (!groupsByRoot.TryGetValue(root, out List<DraggablePiece> list))
+            if (uiManager != null)
             {
-                list = new List<DraggablePiece>();
-                groupsByRoot[root] = list;
+                uiManager.HideStartScreen();
             }
 
-            list.Add(piece);
+            StartRound();
         }
 
-        return new List<List<DraggablePiece>>(groupsByRoot.Values);
-    }
-
-    void SpawnBatch()
-    {
-        SpawnFromCategory(metalPrefabs, metalSpawnPoints);
-        SpawnFromCategory(guardPrefabs, guardSpawnPoints);
-        SpawnFromCategory(hiltPrefabs, hiltSpawnPoints);
-    }
-
-    void SpawnFromCategory(List<GameObject> prefabPool, Transform[] spawnPoints)
-    {
-        List<GameObject> pool = new List<GameObject>(prefabPool);
-
-        for (int i = 0; i < piecesPerCategory && pool.Count > 0; i++)
+        public void StartRound()
         {
-            int index = Random.Range(0, pool.Count);
-            GameObject prefab = pool[index];
-            pool.RemoveAt(index); 
+            Score = 0;
+            timeRemaining = roundTimeSeconds;
+            roundActive = true;
 
-            Transform spawnPoint = spawnPoints[i % spawnPoints.Length];
-            GameObject instance = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+            ClearBoard();
+            SpawnBatch();
 
-            activePieces.Add(instance);
+            UpdateTimerUI();
+            UpdateScoreUI();
+
+            if (audioManager != null) audioManager.PlayNewOrderSound();
         }
-    }
 
-    void ClearBoard()
-    {
-        foreach (GameObject piece in activePieces)
+        void EndRound()
         {
-            if (piece != null)
+            roundActive = false;
+
+            if (uiManager != null) uiManager.ShowEndScreen(Score);
+            if (audioManager != null) audioManager.PlayEndScreenSound();
+        }
+
+        public void SubmitPieces()
+        {
+            if (!roundActive)
             {
-                Destroy(piece);
+                return;
+            }
+
+            if (!HasCompletedGroup())
+            {
+                return;
+            }
+
+            if (audioManager != null) audioManager.PlaySubmitSound();
+
+            List<List<DraggablePiece>> groups = GetConnectedGroups();
+
+            foreach (List<DraggablePiece> group in groups)
+            {
+                int points = ScoreGroup(group);
+                Score += points;
+
+                foreach (DraggablePiece piece in group)
+                {
+                    activePieces.Remove(piece.gameObject);
+                    Destroy(piece.gameObject);
+                }
+            }
+
+            SpawnBatch();
+            UpdateScoreUI();
+        }
+
+        bool HasCompletedGroup()
+        {
+            List<List<DraggablePiece>> groups = GetConnectedGroups();
+
+            foreach (List<DraggablePiece> group in groups)
+            {
+                if (group.Count == 3)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        int ScoreGroup(List<DraggablePiece> group)
+        {
+            return group.Count == 3 ? 1 : 0;
+        }
+
+        List<List<DraggablePiece>> GetConnectedGroups()
+        {
+            Dictionary<Transform, List<DraggablePiece>> groupsByRoot = new Dictionary<Transform, List<DraggablePiece>>();
+
+            foreach (GameObject obj in activePieces)
+            {
+                DraggablePiece piece = obj.GetComponent<DraggablePiece>();
+                Transform root = DraggablePiece.GetGroupRoot(piece.transform);
+
+                if (!groupsByRoot.TryGetValue(root, out List<DraggablePiece> list))
+                {
+                    list = new List<DraggablePiece>();
+                    groupsByRoot[root] = list;
+                }
+
+                list.Add(piece);
+            }
+
+            return new List<List<DraggablePiece>>(groupsByRoot.Values);
+        }
+
+        void SpawnBatch()
+        {
+            List<GameObject> topPicks = PickPrefabs(metalPrefabs);
+            List<GameObject> middlePicks = PickPrefabs(guardPrefabs);
+            List<GameObject> bottomPicks = PickPrefabs(hiltPrefabs);
+
+            SpawnPicks(topPicks, metalSpawnPoints);
+            SpawnPicks(middlePicks, guardSpawnPoints);
+            SpawnPicks(bottomPicks, hiltSpawnPoints);
+
+            if (uiManager != null)
+            {
+                uiManager.ShowNewOrderPopup(
+                    GetSprites(topPicks),
+                    GetSprites(middlePicks),
+                    GetSprites(bottomPicks)
+                );
             }
         }
 
-        activePieces.Clear();
-    }
+        List<GameObject> PickPrefabs(List<GameObject> prefabPool)
+        {
+            List<GameObject> pool = new List<GameObject>(prefabPool);
+            List<GameObject> picked = new List<GameObject>();
 
-    void UpdateTimerUI()
-    {
-        if (timerText == null) return;
+            for (int i = 0; i < piecesPerCategory && pool.Count > 0; i++)
+            {
+                int index = Random.Range(0, pool.Count);
+                picked.Add(pool[index]);
+                pool.RemoveAt(index);
+            }
 
-        int secondsLeft = Mathf.CeilToInt(timeRemaining);
-        timerText.text = $"Time: {secondsLeft}";
-    }
+            return picked;
+        }
 
-    void UpdateScoreUI()
-    {
-        if (scoreText == null) return;
-        
-        scoreText.text = $"Score:  {Score}";
+        void SpawnPicks(List<GameObject> picks, Transform[] spawnPoints)
+        {
+            for (int i = 0; i < picks.Count; i++)
+            {
+                Transform spawnPoint = spawnPoints[i % spawnPoints.Length];
+                GameObject instance = Instantiate(picks[i], spawnPoint.position, Quaternion.identity);
+
+                activePieces.Add(instance);
+            }
+        }
+
+        List<Sprite> GetSprites(List<GameObject> prefabs)
+        {
+            List<Sprite> sprites = new List<Sprite>();
+
+            foreach (GameObject prefab in prefabs)
+            {
+                SpriteRenderer renderer = prefab.GetComponentInChildren<SpriteRenderer>();
+
+                if (renderer != null)
+                {
+                    sprites.Add(renderer.sprite);
+                }
+            }
+
+            return sprites;
+        }
+
+        void ClearBoard()
+        {
+            foreach (GameObject piece in activePieces)
+            {
+                if (piece != null)
+                {
+                    Destroy(piece);
+                }
+            }
+
+            activePieces.Clear();
+        }
+
+        void UpdateTimerUI()
+        {
+            if (timerText == null) return;
+
+            int secondsLeft = Mathf.CeilToInt(timeRemaining);
+            timerText.text = $"Time: {secondsLeft}";
+        }
+
+        void UpdateScoreUI()
+        {
+            if (scoreText == null) return;
+
+            scoreText.text = $"Score:  {Score}";
+        }
+
+        public void RestartGame()
+        {
+            if (uiManager != null) uiManager.HideEndScreen();
+
+            BeginGame();
+        }
     }
 }
