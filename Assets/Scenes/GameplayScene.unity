@@ -3351,7 +3351,7 @@ MonoBehaviour:
   - {fileID: 1355784467}
   startScreenCanvas: {fileID: 2138334633}
   endScreenCanvas: {fileID: 1527689392}
-  finalScoreText: {fileID: 1938321509}
+  finalScoreText: {fileID: 1586389112}
   statusText: {fileID: 224878669}
   workingMessage: Weapon In Progress!
   readyMessage: Ready to go!

@@ -514,7 +514,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1687468262237918959, guid: 8a488ec1780a7194eb749b23418aff57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -587,6 +587,7 @@ MonoBehaviour:
   draggableLayerMask:
     serializedVersion: 2
     m_Bits: 119
+  rotationStepDegrees: 90
 --- !u!50 &8550238893754304089
 Rigidbody2D:
   serializedVersion: 5
